@@ -4,7 +4,7 @@ export type TeamStatRankConfig = {
   key: string;
   label: string;
   format: (t: Team) => string;
-  /** #1 = best in the 102-team pool for this stat */
+  /** #1 = best in the team pool for this stat */
   higherIsBetter: boolean;
   getValue: (t: Team) => number;
 };

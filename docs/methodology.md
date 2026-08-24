@@ -11,7 +11,7 @@ College basketball staffs must decide which player-skill improvements create the
 | BartTorvik | Team/player efficiency, rates |
 | Sports Reference | Box score, shooting splits, advanced stats |
 | NCAA public stats | Games, minutes |
-| **v1 (2025-26)** | 102 teams (Big Ten/SEC/Big 12/ACC/Big East + 23 mid-majors), Sports Reference ingestion |
+| **v1 (2025-26)** | 103 teams (Big Ten/SEC/Big 12/ACC/Big East + 24 mid-majors), Sports Reference ingestion |
 
 **Rotation filter:** MPG ≥ 10 OR total minutes ≥ 250.
 

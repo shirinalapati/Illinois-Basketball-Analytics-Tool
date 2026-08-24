@@ -90,7 +90,7 @@ export default function Overview() {
           Central question: Which skill improvement would create the most value for this player and this team?
         </p>
         <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-3xl border-t border-surface-border/60 pt-4">
-          <strong className="text-white">Example:</strong> If Duke struggles on the defensive glass,
+          <strong className="text-white">Example:</strong> If a team struggles on the defensive glass,
           DevelopmentIQ prioritizes rotation players whose{' '}
           <strong className="text-illini-orange">defensive rebounding</strong> improvement would address that
           team weakness because that skill closes a roster gap where
@@ -99,7 +99,11 @@ export default function Overview() {
       </section>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard label="Teams" value={data.teams_count} sub="102 teams — power + mid-major" />
+        <StatCard
+          label="Teams"
+          value={data.teams_count}
+          sub={`${data.teams_count} teams — power + mid-major`}
+        />
         <StatCard label="Rotation Players" value={data.players_count} sub="Filter of ≥10 MPG or 250 min" accent="blue" />
         <StatCard label="Skill Categories" value={9} sub="Team-relative and player-relative priorities" />
         <StatCard label="Roster" value="2026-27" sub="Uses 2025-26 stats as baseline" accent="blue" />
@@ -140,7 +144,7 @@ export default function Overview() {
             Team Needs — All 9 Skills (Dataset Average)
           </h3>
           <p className="text-xs text-gray-500 mb-3 leading-relaxed">
-            Average need score for each of the nine skill areas across all 102 teams (not one school).
+            Average need score for each of the nine skill areas across all {data.teams_count} teams (not one school).
             Higher bars = relatively more common roster weakness in this pool (0–100).{' '}
             <Link
               to="/methodology#team-needs-map-skillset"
@@ -191,15 +195,15 @@ export default function Overview() {
 
       <section className="card bg-illini-blue/40 border-illini-orange/30">
         <h3 className="font-display text-xl font-bold mb-2">
-          Featured: <span className="text-illini-orange">{FEATURED_TEAM_NAME}</span>
+          <span className="text-illini-orange">{FEATURED_TEAM_NAME}</span>
         </h3>
         <p className="text-gray-300 text-sm mb-4">
-          Explore how team needs shape player development priorities for a featured program.
+          Explore how team needs shape player development priorities for this program.
         </p>
         {featuredNeeds.length > 0 && (
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <div>
-              <h4 className="text-sm text-gray-400 mb-2">Duke needs radar</h4>
+              <h4 className="text-sm text-gray-400 mb-2">Needs radar</h4>
               {data.featured_team_needs && (
                 <NeedsRadar needs={data.featured_team_needs as Record<string, number>} />
               )}
@@ -220,10 +224,10 @@ export default function Overview() {
         )}
         <div className="flex flex-wrap gap-3">
           <Link to={`/team-needs?team=${featuredTeamId}`} className="btn-primary text-sm">
-            Duke Team Needs Map
+            Team Needs Map
           </Link>
           <Link to={`/development-board?team=${featuredTeamId}`} className="btn-secondary text-sm">
-            Duke Development Board
+            Development Board
           </Link>
         </div>
       </section>

@@ -1,6 +1,6 @@
 {
   "season_label": "2026-27",
-  "description": "Transfer portal commits for 2026-27. Only moves to/from teams in the 102-team DevelopmentIQ universe; players must exist on the source team in our 2025-26 stats baseline. Departures remove NBA draft / eligibility exits.",
+  "description": "Transfer portal commits for 2026-27. Only moves to/from teams in the 103-team DevelopmentIQ universe; players must exist on the source team in our 2025-26 stats baseline. Departures remove NBA draft / eligibility exits.",
   "sources": [
     "ESPN top-100 transfer tracker",
     "supplemental reported commits",

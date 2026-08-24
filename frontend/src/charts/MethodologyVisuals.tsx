@@ -29,7 +29,7 @@ export function DpsWeightChart() {
 /** End-to-end model flow */
 export function ModelFlowChart() {
   const steps = [
-    { label: 'Team stats', sub: '102 teams', color: BLUE },
+    { label: 'Team stats', sub: '103 teams', color: BLUE },
     { label: 'Player stats', sub: 'Rotation pool', color: BLUE },
     { label: 'Team need', sub: '9 skills × team', color: ORANGE },
     { label: 'Opportunity', sub: '9 skills × player', color: ORANGE },

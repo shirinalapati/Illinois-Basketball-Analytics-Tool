@@ -1,6 +1,6 @@
 """
-DevelopmentIQ curated team universe — 102 teams (2025-26 season).
-79 power-conference + 23 strong mid-major / tournament-relevant programs.
+DevelopmentIQ curated team universe — 103 teams (2025-26 season).
+79 power-conference + 24 strong mid-major / tournament-relevant programs.
 """
 
 TEAMS_SPEC: list[tuple[str, str, str]] = [
@@ -94,6 +94,7 @@ TEAMS_SPEC: list[tuple[str, str, str]] = [
     ("san_francisco", "San Francisco", "WCC"),
     ("santa_clara", "Santa Clara", "WCC"),
     ("san_diego_state", "San Diego State", "MWC"),
+    ("san_jose_state", "San Jose State", "MWC"),
     ("new_mexico", "New Mexico", "MWC"),
     ("boise_state", "Boise State", "MWC"),
     ("nevada", "Nevada", "MWC"),
@@ -114,4 +115,4 @@ TEAMS_SPEC: list[tuple[str, str, str]] = [
     ("grand_canyon", "Grand Canyon", "WAC"),
 ]
 
-assert len(TEAMS_SPEC) == 102, f"Expected 102 teams, got {len(TEAMS_SPEC)}"
+assert len(TEAMS_SPEC) == 103, f"Expected 103 teams, got {len(TEAMS_SPEC)}"

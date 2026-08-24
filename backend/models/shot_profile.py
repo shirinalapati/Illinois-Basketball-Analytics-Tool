@@ -27,6 +27,20 @@ OFFICIAL_SHOT_SOURCES = frozenset(
 )
 ESTIMATED_SOURCE = "estimated"
 
+
+def _finite_number(value: Any, default: float = 0.0) -> float:
+    """Coerce missing/NaN/inf to a finite default (pandas to_dict often yields NaN)."""
+    try:
+        if value is None or value == "":
+            return default
+        out = float(value)
+    except (TypeError, ValueError):
+        return default
+    if not np.isfinite(out):
+        return default
+    return out
+
+
 SHOT_PROFILE_COLUMNS = [
     "shot_profile_source",
     "rim_attempts",
@@ -158,15 +172,15 @@ def estimate_shot_profile_from_boxscore(player: dict[str, Any]) -> dict[str, Any
     Derive rough zone mix from FGA/3PA for shot-selection notes only.
     Sets shot_profile_source='estimated' — does NOT enable official rim formulas.
     """
-    g = max(int(player.get("games_played", 1)), 1)
-    fga = float(player.get("field_goal_attempts", 0) or 0)
+    g = max(int(_finite_number(player.get("games_played"), 1)), 1)
+    fga = _finite_number(player.get("field_goal_attempts"), 0.0)
     if fga <= 0:
-        tpar = float(player.get("three_point_attempt_rate", 0) or 0)
-        tpa = float(player.get("three_point_attempts", 0) or 0)
+        tpar = _finite_number(player.get("three_point_attempt_rate"), 0.0)
+        tpa = _finite_number(player.get("three_point_attempts"), 0.0)
         fga = tpa / tpar if tpar > 0.05 else max(tpa * 2.2, 50)
-    tpa = float(player.get("three_point_attempts", 0) or 0)
+    tpa = _finite_number(player.get("three_point_attempts"), 0.0)
     if tpa <= 0:
-        tpar = float(player.get("three_point_attempt_rate", 0) or 0)
+        tpar = _finite_number(player.get("three_point_attempt_rate"), 0.0)
         tpa = fga * tpar
     two_a = max(fga - tpa, 0)
     pos = str(player.get("position", "F") or "F").strip().upper()[:1]
@@ -180,8 +194,8 @@ def estimate_shot_profile_from_boxscore(player: dict[str, Any]) -> dict[str, Any
     fga_pg = fga / g
     rim_pg = rim_a / g
     mid_pg = mid_a / g
-    tp_pct = float(player.get("three_point_pct", 0.33) or 0.33)
-    two_pct = float(player.get("two_point_pct", 0.5) or 0.5)
+    tp_pct = _finite_number(player.get("three_point_pct"), 0.33)
+    two_pct = _finite_number(player.get("two_point_pct"), 0.5)
     rim_fg = min(0.72, max(0.35, two_pct * 1.05))
     mid_fg = min(0.55, max(0.30, two_pct * 0.92))
     corner_share = 0.35 if pos == "G" else 0.28
@@ -213,8 +227,8 @@ def enrich_player_shot_profile(player: dict[str, Any], *, estimate_if_missing: b
         return out
     if has_any_shot_profile(out) or not estimate_if_missing:
         return out
-    if float(out.get("field_goal_attempts", 0) or 0) <= 0 and float(
-        out.get("three_point_attempts", 0) or 0
+    if _finite_number(out.get("field_goal_attempts"), 0.0) <= 0 and _finite_number(
+        out.get("three_point_attempts"), 0.0
     ) <= 0:
         return out
     est = estimate_shot_profile_from_boxscore(out)

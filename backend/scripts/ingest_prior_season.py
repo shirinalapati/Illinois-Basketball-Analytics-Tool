@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Fetch 2024-25 player stats into backend/data/sr_cache_prior/ for YoY realism calibration.
-Uses the same 102-team universe as the main ingest.
+Uses the same 103-team universe as the main ingest.
 
 Example:
   python ingest_prior_season.py --delay 8

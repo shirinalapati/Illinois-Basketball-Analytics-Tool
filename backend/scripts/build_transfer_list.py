@@ -1,6 +1,6 @@
 """
 Build roster_transfers_2027.json from ESPN top-100 transfer article + supplemental commits.
-Only includes moves where destination is one of the app's 102 teams and
+Only includes moves where destination is one of the app's 103 teams and
 the player exists on the source team in our ingested roster.
 """
 
@@ -24,7 +24,7 @@ WITHDRAWALS_PATH = DATA_DIR / "nba_draft_withdrawals_2026.json"
 
 VALID_TEAMS = {t[0] for t in TEAMS_SPEC}
 
-# Display name -> team_id (102-team universe only)
+# Display name -> team_id (103-team universe only)
 SCHOOL_TO_TEAM: dict[str, str] = {
     "Alabama": "alabama",
     "Arizona": "arizona",
@@ -94,6 +94,9 @@ SCHOOL_TO_TEAM: dict[str, str] = {
     "Saint Mary's": "saint_marys",
     "St. Mary's": "saint_marys",
     "San Diego State": "san_diego_state",
+    "San Jose State": "san_jose_state",
+    "San José State": "san_jose_state",
+    "SJSU": "san_jose_state",
     "Seton Hall": "seton_hall",
     "SMU": "smu",
     "South Carolina": "south_carolina",
@@ -221,7 +224,7 @@ DEPARTURES_ELIGIBILITY = [
     {"player_name": "Tre Donaldson", "team_id": "miami"},
 ]
 
-# Portal with no commit to a 102-team school (removed from last known team)
+# Portal with no commit to a 103-team school (removed from last known team)
 PORTAL_UNCOMMITTED = [
     {"player_name": "Milan Momcilovic", "team_id": "iowa_state"},
     {"player_name": "Tounde Yessoufou", "team_id": "baylor"},
@@ -274,7 +277,7 @@ def build_departures(
     Remove players from 2026-27 rosters when they:
     - Stayed in the 2026 NBA Draft (authoritative list)
     - Exhausted eligibility / left as seniors
-    - Entered portal without a commit to a 102-team school
+    - Entered portal without a commit to a 103-team school
     """
     found: dict[tuple[str, str], dict] = {}
     withdraw_keys: set[tuple[str, str]] = set()
@@ -283,7 +286,7 @@ def build_departures(
         if entry:
             withdraw_keys.add((entry["norm_name"], entry["team_id"]))
 
-    # 1. Confirmed NBA draft stayers (all 102-team programs)
+    # 1. Confirmed NBA draft stayers (all 103-team programs)
     for s in _load_json_player_list(STAYING_PATH):
         if _norm(s["player_name"]) in transfer_names:
             continue
@@ -303,7 +306,7 @@ def build_departures(
         if entry:
             _add_departure(found, entry, "eligibility")
 
-    # 3. Portal, no destination in our 102-team universe
+    # 3. Portal, no destination in our 103-team universe
     for spec in PORTAL_UNCOMMITTED:
         if _norm(spec["player_name"]) in transfer_names:
             continue
@@ -416,7 +419,7 @@ def main() -> None:
         "season_label": "2026-27",
         "description": (
             "Transfer portal commits for 2026-27. Only moves to/from teams in the "
-            "102-team DevelopmentIQ universe; players must exist on the source team "
+            "103-team DevelopmentIQ universe; players must exist on the source team "
             "in our 2025-26 stats baseline. Departures remove NBA draft / eligibility exits."
         ),
         "sources": [

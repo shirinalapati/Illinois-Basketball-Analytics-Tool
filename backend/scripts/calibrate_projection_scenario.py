@@ -1,7 +1,7 @@
 """
 Calibrate projected-impact improvement scenarios from YoY player movement.
 
-Same matched sample as calibrate_realism_priors.py (same-school returners, 102 teams).
+Same matched sample as calibrate_realism_priors.py (same-school returners, 103 teams).
 Uses 75th percentile of positive year-over-year gains (clipped to sane bounds) plus
 p90 ceilings from the current-season pool.
 """

@@ -35,10 +35,10 @@ def main() -> None:
                     fail.append(tid)
                 time.sleep(20 * (attempt + 1))
     cached = sum(1 for tid, _, _ in TEAMS_SPEC if _load_cache(tid))
-    print(f"Done: {cached}/102 cached, failed: {len(fail)}", flush=True)
+    print(f"Done: {cached}/103 cached, failed: {len(fail)}", flush=True)
     if fail:
         print("Failed:", fail, flush=True)
-    if cached >= 102:
+    if cached >= 103:
         subprocess.run([sys.executable, str(SCRIPT_DIR / "build_full_dataset.py")], check=True)
         subprocess.run([sys.executable, str(SCRIPT_DIR / "seed_database.py")], check=True)
         print("Database rebuilt.", flush=True)

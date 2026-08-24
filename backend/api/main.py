@@ -18,7 +18,7 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 DB_PATH = BACKEND_ROOT / "data" / "developmentiq.db"
-FEATURED_TEAM_ID = "duke"
+FEATURED_TEAM_ID = "san_jose_state"
 
 from models.projection_impact import simulate_impacts_from_sliders  # noqa: E402
 from models.simulator_presets import (  # noqa: E402

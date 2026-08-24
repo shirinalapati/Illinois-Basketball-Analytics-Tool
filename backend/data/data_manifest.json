@@ -1,12 +1,12 @@
 {
   "label": "2026-27 ROSTERS \u00b7 SR STATS",
-  "description": "102/102 teams. Player stats from 2025-26 Sports Reference; rosters adjusted for 71 documented transfer-portal moves (2026-27) plus manual roster_status.csv overrides.",
+  "description": "103/103 teams. Player stats from 2025-26 Sports Reference; rosters adjusted for 71 documented transfer-portal moves (2026-27) plus manual roster_status.csv overrides.",
   "season": 2026,
   "season_label": "2026-27",
   "stats_season_label": "2025-26",
-  "teams_count": 102,
-  "players_count": 922,
-  "teams_with_data": 102,
+  "teams_count": 103,
+  "players_count": 934,
+  "teams_with_data": 103,
   "sources": [
     "Sports Reference",
     "roster_status.csv"

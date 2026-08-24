@@ -91,6 +91,7 @@ TEAM_SLUGS: dict[str, str] = {
     "san_francisco": "san-francisco",
     "santa_clara": "santa-clara",
     "san_diego_state": "san-diego-state",
+    "san_jose_state": "san-jose-state",
     "new_mexico": "new-mexico",
     "boise_state": "boise-state",
     "nevada": "nevada",
@@ -111,4 +112,4 @@ TEAM_SLUGS: dict[str, str] = {
     "grand_canyon": "grand-canyon",
 }
 
-assert len(TEAM_SLUGS) == 102
+assert len(TEAM_SLUGS) == 103

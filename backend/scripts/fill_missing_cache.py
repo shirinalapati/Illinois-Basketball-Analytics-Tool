@@ -35,8 +35,8 @@ def main() -> None:
                 print(f"[{i}/{len(missing)}] ✗ {tid} attempt {attempt+1}: {e}", flush=True)
                 time.sleep(60 * (attempt + 1))
     cached = sum(1 for tid, _, _ in TEAMS_SPEC if _load_cache(tid))
-    print(f"Cached {cached}/102", flush=True)
-    if cached == 102:
+    print(f"Cached {cached}/103", flush=True)
+    if cached == 103:
         subprocess.run([sys.executable, str(SCRIPT_DIR / "build_full_dataset.py")], check=True)
         subprocess.run([sys.executable, str(SCRIPT_DIR / "seed_database.py")], check=True)
 

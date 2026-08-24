@@ -23,9 +23,9 @@ from ingest_sports_reference import DATA_DIR, _load_cache
 from models.scoring import ScoringEngine, SKILL_CATEGORIES
 
 VALIDATION_TEAMS = [
+    "san_jose_state",
     "duke",
     "purdue",
-    "duke",
     "houston",
     "kentucky",
     "uconn",

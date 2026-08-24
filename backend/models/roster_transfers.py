@@ -1,4 +1,4 @@
-"""2026-27 portal transfers into the 102-team DevelopmentIQ universe."""
+"""2026-27 portal transfers into the DevelopmentIQ team universe."""
 
 from __future__ import annotations
 

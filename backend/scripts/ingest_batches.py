@@ -45,7 +45,7 @@ def run_batches(batch_size: int, delay: float, pause: float) -> None:
     flush_print(f"Starting batch ingest: {cached}/{total} already cached, {len(pending)} to fetch")
 
     if not pending:
-        flush_print("All 102 teams already cached.")
+        flush_print("All 103 teams already cached.")
         _finalize()
         return
 
@@ -88,7 +88,7 @@ def _finalize() -> None:
     flush_print("\nRebuilding database...")
     subprocess.run([sys.executable, str(SCRIPT_DIR / "build_full_dataset.py")], check=True)
     subprocess.run([sys.executable, str(SCRIPT_DIR / "seed_database.py")], check=True)
-    flush_print("✓ All 102 teams built and database seeded.")
+    flush_print("✓ All 103 teams built and database seeded.")
 
 
 if __name__ == "__main__":

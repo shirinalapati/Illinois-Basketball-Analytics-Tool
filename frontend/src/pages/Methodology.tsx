@@ -36,7 +36,7 @@ const GLOSSARY = [
   },
   {
     term: 'Team Need Score',
-    def: 'How badly the team needs improvement in that area relative to the 102-team pool (0 = relative strength, 100 = biggest weakness in the pool). This is a team-level score for each skill area — not a player score and not Development Leverage. To see whether the current roster can address a high need, check whether any rotation player has actionable DPS (Top Priority with actionable focus) in that skill. If team need is severe but nobody does, the gap may require portal, recruiting, or lineup-construction — not internal development alone.',
+    def: 'How badly the team needs improvement in that area relative to the 103-team pool (0 = relative strength, 100 = biggest weakness in the pool). This is a team-level score for each skill area — not a player score and not Development Leverage. To see whether the current roster can address a high need, check whether any rotation player has actionable DPS (Top Priority with actionable focus) in that skill. If team need is severe but nobody does, the gap may require portal, recruiting, or lineup-construction — not internal development alone.',
   },
   {
     term: 'Player Opportunity',
@@ -164,7 +164,7 @@ export default function Methodology() {
       <MethodologyAccordion title="Team Needs Map Skillset" defaultOpen id="team-needs-map-skillset">
         <p>
           The <strong className="text-white">Team Needs Map</strong> scores each team across the same nine skill
-          areas. Each raw weakness is calculated from team-level rates, then normalized 0–100 across the 102-team
+          areas. Each raw weakness is calculated from team-level rates, then normalized 0–100 across the 103-team
           pool: <strong className="text-white">0</strong> = relative strength,{' '}
           <strong className="text-white">100</strong> = biggest weakness in the pool.
         </p>
@@ -178,7 +178,7 @@ export default function Methodology() {
           are saved for the technical writeup.
         </p>
         <p className="font-mono text-xs text-illini-orange bg-surface/70 rounded px-3 py-2">
-          Need score = min-max normalize raw weakness across the 102-team pool → 0–100
+          Need score = min-max normalize raw weakness across the 103-team pool → 0–100
         </p>
         <div className="grid gap-2">
           {TEAM_NEED_SKILLSET.map(({ skill, formula }, index) => (
@@ -259,7 +259,7 @@ export default function Methodology() {
             <p>
               How weak the <em>team</em> is in that skill from team efficiency stats (same scores as Team Needs
               Map). Each skill uses team rates (turnover %, rebound %, assist rate, etc.), normalized 0–100
-              across 102 teams.
+              across 103 teams.
             </p>
             <DetailBox>
               <p className="text-xs text-gray-400">
@@ -272,7 +272,7 @@ export default function Methodology() {
                 Step 2: Need = (Raw − min Raw) / (max Raw − min Raw) × 100
               </p>
               <p className="text-xs text-gray-500">
-                Min/max Raw come from the 102-team pool for that skill. A score of 0 means relative strength; 100
+                Min/max Raw come from the 103-team pool for that skill. A score of 0 means relative strength; 100
                 means the biggest weakness in the pool.
               </p>
             </DetailBox>

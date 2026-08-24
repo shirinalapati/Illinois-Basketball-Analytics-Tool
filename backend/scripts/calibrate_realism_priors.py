@@ -122,8 +122,8 @@ def calibrate() -> tuple[dict[str, int], dict]:
         "matched_players": matched,
         "match_rule": (
             "Same school only: player_id includes team_id, so portal/transfer "
-            "players (even between two of the 102 teams) are excluded. Both seasons "
-            "must be at a school in the 102-team ingest."
+            "players (even between two of the 103 teams) are excluded. Both seasons "
+            "must be at a school in the 103-team ingest."
         ),
         "transfers_included": False,
         "prior_season": "2024-25",

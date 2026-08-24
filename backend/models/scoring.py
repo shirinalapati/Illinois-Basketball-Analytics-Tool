@@ -328,12 +328,12 @@ def _ordinal(n: int) -> str:
 
 
 def _pool_rank_worst(rank: int, n: int) -> str:
-    """Label for _rank_among_teams (rank 1 = worst in the 102-team pool for that stat)."""
+    """Label for _rank_among_teams (rank 1 = worst in the team pool for that stat)."""
     return f"{_ordinal(rank)}-worst of {n}"
 
 
 def _pool_rank_best(rank: int, n: int) -> str:
-    """Best-oriented label when rank 1 = worst (e.g. rank 17 worst → 86th-best of 102)."""
+    """Best-oriented label when rank 1 = worst (e.g. rank 17 worst → (n-16)th-best of n)."""
     best = max(1, n - rank + 1)
     return f"{_ordinal(best)}-best of {n}"
 

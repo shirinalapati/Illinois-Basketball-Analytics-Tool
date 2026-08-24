@@ -22,7 +22,7 @@ College staffs must answer:
 DevelopmentIQ is not a generic rankings dashboard. It weights every player × skill combination with:
 
 1. **Player improvement opportunity** (gap vs position peers and pool)  
-2. **Team need alignment** (roster weakness vs 102-team pool)  
+2. **Team need alignment** (roster weakness vs 103-team pool)  
 3. **Role leverage** (minutes)  
 4. **Improvement realism** and **basketball impact** (calibrated priors)  
 5. **Position fit** (adjusted DPS so guards are not steered into big-man skills without a real gap)
@@ -37,7 +37,7 @@ DevelopmentIQ is not a generic rankings dashboard. It weights every player × sk
 |------|--------|
 | **Stats season** | 2025–26 (Sports Reference) |
 | **Roster lens** | Projected **2026–27** teams (transfers / departures applied) |
-| **Teams** | **102** (power + selected mid-majors) |
+| **Teams** | **103** (power + selected mid-majors) |
 | **Players** | **922** rotation players (≥10 MPG or 250+ minutes) |
 | **Skills** | 9 categories (shooting, FT, ball security, ORB/DRB, fouls, playmaking, defensive activity, rim pressure) |
 
@@ -100,7 +100,7 @@ Optional: `python ingest_sports_reference.py --missing-only` (rate-limited SR ca
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Overview — mission, DPS weight chart, Duke feature, leverage leaders |
+| `/` | Overview — mission, DPS weight chart, default program needs, leverage leaders |
 | `/team-needs` | Team Needs Map — ranked weaknesses + radar |
 | `/development-board` | Per-team priorities, Proj. Value, Top Priority, leverage |
 | `/player/:id` | Profile — stats, ranks, top 3 skills, DPS breakdown |
@@ -155,6 +155,6 @@ developmentiq-cbb/
 
 - **Coaches:** Development plans tied to team needs; actionable vs relative labels; simulator scenarios.  
 - **GM / ops:** Team Needs Map; compare severe team need to actionable DPS on roster; leverage leaderboard; portal/recruiting context when no internal pathway exists.  
-- **Default team context:** Duke (`duke`) on overview and deep links.
+- **Default team context:** San Jose State (`san_jose_state`) on overview and deep links.
 
 ---

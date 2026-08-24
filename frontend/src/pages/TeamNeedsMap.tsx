@@ -66,7 +66,7 @@ export default function TeamNeedsMap() {
           <h2 className="font-display text-2xl font-bold">Team Needs Map</h2>
           <p className="text-gray-400 text-sm mt-1 max-w-2xl">
             Ranked from 2025-26 team efficiency stats (Sports Reference). Each line cites this
-            team&apos;s numbers vs the 102-team pool — not generic copy.{' '}
+            team&apos;s numbers vs the {teams.length || 103}-team pool — not generic copy.{' '}
             <Link
               to="/methodology#team-needs-map-skillset"
               className="text-illini-orange hover:underline"
@@ -74,7 +74,7 @@ export default function TeamNeedsMap() {
               View methodology
             </Link>{' '}
             to see how team need scores are calculated for all nine skills (raw weakness formula per
-            skill, then min–max scaling across the 102-team pool).
+            skill, then min–max scaling across the {teams.length || 103}-team pool).
           </p>
           {team && needs && topNeed && lowNeed ? (
             <p className="text-gray-500 text-xs mt-2 max-w-2xl leading-relaxed">
@@ -100,7 +100,7 @@ export default function TeamNeedsMap() {
               <h3 className="font-display text-lg text-illini-orange">{team.team_name}</h3>
               <p className="text-sm text-gray-400">{team.conference} · 2025-26</p>
               <p className="text-xs text-gray-500 mt-3">
-                Rank vs {teams.length || 102}-team pool (#1 = best for that stat). ORtg / DRtg / Pace
+                Rank vs {teams.length || 103}-team pool (#1 = best for that stat). ORtg / DRtg / Pace
                 are team-specific (from SR season totals when ingested, otherwise estimated from
                 four-factor rates).
               </p>
@@ -154,7 +154,7 @@ export default function TeamNeedsMap() {
                 </>
               ) : null}{' '}
               is not the raw stat (ORB%, assist rate, etc.). It is a{' '}
-              <strong className="text-white">0–100 rank vs 102 teams</strong> after two steps.
+              <strong className="text-white">0–100 rank vs {teams.length || 103} teams</strong> after two steps.
             </p>
             <div className="grid md:grid-cols-2 gap-4 text-sm">
               <div className="rounded-lg border border-surface-border bg-surface/50 p-3 space-y-2">
@@ -177,7 +177,7 @@ export default function TeamNeedsMap() {
                   Need = (Raw − min Raw) / (max Raw − min Raw) × 100
                 </p>
                 <p className="text-gray-500 text-xs">
-                  Min/max Raw come from the worst and best teams in the 102-team pool for that skill.
+                  Min/max Raw come from the worst and best teams in the {teams.length || 103}-team pool for that skill.
                 </p>
                 {team && needs && (
                   <p className="text-gray-300 text-xs leading-relaxed">
@@ -185,7 +185,7 @@ export default function TeamNeedsMap() {
                     <strong className="text-illini-orange">{Math.round(orbNeed)}</strong>
                     <span className="text-gray-500">
                       {' '}
-                      (ORB {orbPct.toFixed(1)}% — scaled vs the 102-team pool; not the same as the top overall
+                      (ORB {orbPct.toFixed(1)}% — scaled vs the {teams.length || 103}-team pool; not the same as the top overall
                       need above)
                     </span>
                   </p>
@@ -201,9 +201,12 @@ export default function TeamNeedsMap() {
           <div className="card">
             <h3 className="font-display text-lg font-semibold mb-2">Ranked Team Needs</h3>
             <p className="text-sm text-gray-500 mb-4">
-              0 = relative strength · 100 = biggest weakness in the 102-team pool. Explanations use pool rank:{' '}
-              <strong className="text-gray-400">17th-worst of 102</strong> = only 16 teams are worse on that stat;{' '}
-              <strong className="text-gray-400">86th-best of 102</strong> = relative strength.
+              0 = relative strength · 100 = biggest weakness in the {teams.length || 103}-team pool. Explanations use pool rank:{' '}
+              <strong className="text-gray-400">17th-worst of {teams.length || 103}</strong> = only 16 teams are worse on that stat;{' '}
+              <strong className="text-gray-400">
+                {teams.length ? `${teams.length - 16}th` : '87th'}-best of {teams.length || 103}
+              </strong>{' '}
+              = relative strength.
             </p>
             <TeamNeedsBarChart items={ranked} />
             <div className="space-y-4 mt-6 border-t border-surface-border pt-6">
