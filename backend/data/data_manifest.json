@@ -1,18 +1,18 @@
 {
   "label": "2026-27 ROSTERS \u00b7 SR STATS",
-  "description": "103/103 teams. Player stats from 2025-26 Sports Reference; rosters adjusted for 71 documented transfer-portal moves (2026-27) plus manual roster_status.csv overrides.",
+  "description": "103/103 teams. Player stats from 2025-26 Sports Reference; rosters adjusted for 74 documented transfer-portal moves (2026-27) plus manual roster_status.csv overrides.",
   "season": 2026,
   "season_label": "2026-27",
   "stats_season_label": "2025-26",
   "teams_count": 103,
-  "players_count": 934,
+  "players_count": 925,
   "teams_with_data": 103,
   "sources": [
     "Sports Reference",
     "roster_status.csv"
   ],
-  "roster_projection_last_updated": "2026-06-03",
-  "roster_status_override_count": 33,
+  "roster_projection_last_updated": "2026-08-24",
+  "roster_status_override_count": 38,
   "roster_status_warning": "Some 2026-27 roster statuses may change due to late transfer commitments, NBA Draft withdrawal decisions, eligibility waivers, or updated school rosters.",
   "roster_status_source": "backend/data/roster_status.csv"
 }

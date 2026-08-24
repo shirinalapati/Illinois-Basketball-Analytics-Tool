@@ -5,7 +5,8 @@
     "ESPN top-100 transfer tracker",
     "supplemental reported commits",
     "nba_draft_staying_2026.json",
-    "nba_draft_withdrawals_2026.json"
+    "nba_draft_withdrawals_2026.json",
+    "SJSU athletics 2026-27 roster / Mountain West portal tracker"
   ],
   "transfers": [
     {
@@ -362,6 +363,21 @@
       "player_name": "Tru Washington",
       "from_team_id": "miami",
       "to_team_id": "xavier"
+    },
+    {
+      "player_name": "Colby Garland",
+      "from_team_id": "san_jose_state",
+      "to_team_id": "georgia_tech"
+    },
+    {
+      "player_name": "Mookie Cook",
+      "from_team_id": "san_francisco",
+      "to_team_id": "san_jose_state"
+    },
+    {
+      "player_name": "Robert Vaihola",
+      "from_team_id": "minnesota",
+      "to_team_id": "san_jose_state"
     }
   ],
   "departures": [
@@ -519,6 +535,51 @@
       "player_name": "Hannes Steinbach",
       "team_id": "washington",
       "reason": "nba_draft"
+    },
+    {
+      "player_name": "Melvin Bell Jr.",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Jermaine Washington",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Adrian Myers",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Ben Roseborough",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Yaphet Moundi",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Sadraque Nganga",
+      "team_id": "san_jose_state",
+      "reason": "eligibility"
+    },
+    {
+      "player_name": "Japhet Moupadele",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Douglas Langford",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
+    },
+    {
+      "player_name": "Marcus Overstreet",
+      "team_id": "san_jose_state",
+      "reason": "transfer_portal"
     }
   ]
 }
