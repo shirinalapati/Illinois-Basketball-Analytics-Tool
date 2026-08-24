@@ -20,9 +20,12 @@ from bs4 import BeautifulSoup, Comment
 import sys
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+BACKEND_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
+sys.path.insert(0, str(BACKEND_ROOT))
 
 from generate_demo_data import SEASON_LABEL, SEASON_YEAR, _team_profile
+from models.class_year import normalize_class_year
 from teams_universe import TEAMS_SPEC
 from team_slugs import TEAM_SLUGS
 
@@ -407,20 +410,40 @@ def parse_team_row(html: str) -> dict:
 
 
 def class_from_roster(html: str) -> dict[str, str]:
-    """Player name -> class year from roster table."""
-    mapping = {}
+    """Player name -> class year from roster table (Sports Reference FR/SO/JR/SR)."""
+    mapping: dict[str, str] = {}
     tables = pd.read_html(StringIO(html))
     for df in tables:
         cols = [str(c) for c in df.columns]
-        if "Player" in cols and "Class" in cols:
-            for _, row in df.iterrows():
-                name = str(row.get("Player", "")).strip()
-                if not name or name == "Player":
-                    continue
-                cls = str(row.get("Class", "Jr")).strip()[:2]
-                if cls in ("Fr", "So", "Jr", "Sr"):
-                    mapping[name] = cls
+        if "Player" not in cols or "Class" not in cols:
+            continue
+        for _, row in df.iterrows():
+            name = str(row.get("Player", "")).strip()
+            if not name or name == "Player" or name.lower() == "nan":
+                continue
+            cls = normalize_class_year(row.get("Class"))
+            if cls != "Unknown":
+                mapping[name] = cls
+                # Also index a Jr./Sr. suffix-stripped key for stats-table name mismatches.
+                alt = re.sub(r"\s+(jr|sr|ii|iii|iv)\.?$", "", name, flags=re.I).strip()
+                if alt and alt != name:
+                    mapping.setdefault(alt, cls)
     return mapping
+
+
+def _lookup_class(class_map: dict[str, str], name: str) -> str | None:
+    if name in class_map:
+        return class_map[name]
+    alt = re.sub(r"\s+(jr|sr|ii|iii|iv)\.?$", "", name, flags=re.I).strip()
+    if alt in class_map:
+        return class_map[alt]
+    # Case-insensitive fallback
+    low = {k.lower(): v for k, v in class_map.items()}
+    if name.lower() in low:
+        return low[name.lower()]
+    if alt.lower() in low:
+        return low[alt.lower()]
+    return None
 
 
 def player_rows_from_df(
@@ -467,7 +490,7 @@ def player_rows_from_df(
         block_pct = round(100 * blk_pg / poss_pg, 2)
         fga_season = int(round(fga_pg * g))
 
-        class_year = class_map.get(name)
+        class_year = _lookup_class(class_map, name)
         rows.append({
             "player_id": f"{team_id}_{re.sub(r'[^a-z0-9]+', '_', name.lower())}",
             "player_name": name,

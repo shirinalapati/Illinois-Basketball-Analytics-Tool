@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any
 
@@ -11,10 +12,12 @@ CLASS_ORDER = ("Fr", "So", "Jr", "Sr", "Gr", "Unknown")
 
 _ALIASES = {
     "fr": "Fr",
+    "f": "Fr",
     "freshman": "Fr",
     "so": "So",
     "sophomore": "So",
     "jr": "Jr",
+    "j": "Jr",
     "junior": "Jr",
     "sr": "Sr",
     "senior": "Sr",
@@ -39,9 +42,38 @@ def normalize_class_year(value: Any) -> str:
     if value is None or (isinstance(value, float) and pd.isna(value)):
         return "Unknown"
     raw = str(value).strip()
-    if not raw:
+    if not raw or raw.lower() in {"nan", "none", "null", "—", "-"}:
         return "Unknown"
-    return _ALIASES.get(raw.lower().replace(".", ""), "Unknown")
+
+    # Prefer athletics-site phrases ("Redshirt Junior", etc.).
+    low = re.sub(r"[^a-z0-9 ]+", " ", raw.lower())
+    low = " ".join(low.split())
+    for full, short in (
+        ("redshirt senior", "Sr"),
+        ("rs senior", "Sr"),
+        ("graduate student", "Gr"),
+        ("grad student", "Gr"),
+        ("redshirt junior", "Jr"),
+        ("rs junior", "Jr"),
+        ("redshirt sophomore", "So"),
+        ("rs sophomore", "So"),
+        ("redshirt freshman", "Fr"),
+        ("rs freshman", "Fr"),
+        ("fifth year", "Gr"),
+        ("senior", "Sr"),
+        ("junior", "Jr"),
+        ("sophomore", "So"),
+        ("freshman", "Fr"),
+        ("graduate", "Gr"),
+    ):
+        if full in low:
+            return short
+
+    compact = raw.replace(".", "").strip().lower()
+    if compact in _ALIASES:
+        return _ALIASES[compact]
+    # Sports Reference roster tables use FR/SO/JR/SR.
+    return _ALIASES.get(compact[:2], "Unknown")
 
 
 def advance_class_year(value: Any) -> str:
