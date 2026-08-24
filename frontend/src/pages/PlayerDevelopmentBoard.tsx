@@ -199,7 +199,17 @@ export default function PlayerDevelopmentBoard() {
           <p className="text-gray-400 py-8 text-center">Loading board…</p>
         ) : (
           <>
-            <div className="mb-3 text-xs text-gray-500">
+            <div className="mb-3 space-y-2 text-xs text-gray-500 leading-relaxed">
+              <p>
+                <span className="font-medium text-gray-400">Who appears here:</span> Players need a meaningful
+                2025–26 sample — at least <span className="text-gray-400">10 MPG</span> or{' '}
+                <span className="text-gray-400">250 total minutes</span> — to be scored. The board then applies
+                projected <span className="text-gray-400">2026–27 roster status</span>: players who left for the
+                transfer portal, transferred out, graduated, or are otherwise no longer on the team are removed
+                even if they met that sample last season. Incoming transfers from other D-I programs in the
+                tool keep their prior-season baseline and are marked Transfer when applicable. High-school
+                freshmen and other players without a college stats baseline are not listed.
+              </p>
               <p>
                 Click a player&apos;s name to open the full profile with production ranks, advanced context, shot
                 profile, strengths/weaknesses, and detailed development priorities. Use the sort dropdown or column
